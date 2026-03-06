@@ -1,6 +1,5 @@
 # 📸 Mostafa's Gallery
 
-
 A modern and responsive **image gallery website** created to showcase personal photography in a clean, elegant, and minimal design. The project highlights smooth navigation, a welcoming introduction section, and a responsive gallery layout.
 
 🔗 **Live Demo:**
@@ -28,19 +27,17 @@ It was created as part of learning and practicing **front-end web development** 
 ✅ Smooth scrolling interface
 ✅ Responsive image gallery layout
 ✅ Minimal and modern design
-✅ Mobile-friendly UI
 ✅ Personal introduction section
 ✅ Fast loading static website
+✅ Use PC for better view.
 
 ---
 
 # 🖼️ Website Preview
 
-*(You can add a screenshot of your website here later)*
-
-```
 ![Gallery Preview](preview.png)
-```
+![Gallery Preview](preview1.png)
+![Gallery Preview](preview5.png)
 
 ---
 
@@ -63,15 +60,9 @@ MostafasGallery
 ├── index.html
 ├── style.css
 ├── script.js
+├── preview.png
 └── images/
 ```
-
----
-
-# 🚀 Getting Started
-
-Follow these steps to run the project locally.
-
 
 # 🌐 Deployment
 
