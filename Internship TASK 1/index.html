@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MOSATFA'S— Image Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="toast"></div>
+
+<!-- ═══════════════════ WELCOME PAGE ═══════════════════ -->
+<div id="welcome-page">
+
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="welcome-inner">
+
+    <!-- LEFT PANEL -->
+    <div class="w-left">
+      <div class="w-eyebrow"><span class="w-line-dec"></span>Mostafa's Gallery</div>
+
+      <div class="w-name">
+        <span class="w-name-line">THIS IS </span>
+        <span class="w-name-line accent-italic">MOSTAFA.</span>
+      </div>
+
+      <div class="w-tagline-block">
+        <p class="w-tagline">"Capturing light, shadow, and the quiet moments in between."</p>
+      </div>
+
+      <div class="w-divider"></div>
+
+      <p class="w-bio">
+       Hello! I’m Mostafa Main Uddin, a CSE student passionate about technology, programming, and building creative digital solutions.
+       I also enjoy photography and capturing beautiful moments of nature and daily life.
+    </p>
+
+      <div class="w-stats">
+        <div class="w-stat">
+          <div class="w-stat-num">12<span>+</span></div>
+          <div class="w-stat-label">Photos</div>
+        </div>
+        <div class="w-stat">
+          <div class="w-stat-num">3<span>+</span></div>
+          <div class="w-stat-label">Categories</div>
+        </div>
+        <div class="w-stat">
+          <div class="w-stat-num">1<span>st</span></div>
+          <div class="w-stat-label">Impression</div>
+        </div>
+      </div>
+
+      <div class="w-social-row">
+        <a href="https://www.facebook.com/share/1CBzEMsxFM" target="_blank" class="w-soc-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <span>Facebook</span>
+        </a>
+        <a href="https://www.linkedin.com/in/mostafa-main-uddin-68475a296" target="_blank" class="w-soc-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a href="mailto:mostafasiyam29@gmail.com" class="w-soc-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span>Gmail</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="w-right">
+      <div class="w-corner-label">MOSTAFA's Gallery</div>
+
+      <div class="w-mosaic">
+        <div class="w-mosaic-item w-mosaic-tall">
+          <img src="images/photo1.jpg" alt="Preview" onerror="this.src='https://picsum.photos/id/10/600/900'"/>
+          <div class="w-mosaic-glow"></div>
+        </div>
+        <div class="w-mosaic-item">
+          <img src="images/photo2.jpg" alt="Preview" onerror="this.src='https://picsum.photos/id/20/600/400'"/>
+          <div class="w-mosaic-glow"></div>
+        </div>
+        <div class="w-mosaic-item">
+          <img src="images/photo12.jpg" alt="Preview" onerror="this.src='https://picsum.photos/id/30/600/400'"/>
+          <div class="w-mosaic-glow"></div>
+        </div>
+      </div>
+
+      <div class="w-enter-block">
+        <button class="w-enter-btn" id="enterGalleryBtn">
+          <span>Enter Gallery</span>
+          <span class="w-arrow">&#8594;</span>
+        </button>
+        <div class="w-enter-sub">12 curated images · 3 categories</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="w-scroll-hint">
+    <div class="w-scroll-line"></div>
+    Scroll
+  </div>
+
+</div>
+<!-- END WELCOME PAGE -->
+
+
+<!-- ═══════════════════ GALLERY PAGE ═══════════════════ -->
+<div id="gallery-page">
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <button class="lb-close" onclick="closeLightbox()">ESC / CLOSE</button>
+    <div class="lb-inner">
+      <div class="lb-img-wrap">
+        <img id="lb-img" src="" alt="" onclick="toggleZoom(this)"/>
+      </div>
+      <div class="lb-info">
+        <div class="lb-info-eyebrow" id="lb-category">— Category</div>
+        <div class="lb-title" id="lb-title">Image Title</div>
+        <div class="lb-desc" id="lb-desc">Description text here.</div>
+        <div class="lb-counter"><strong id="lb-idx">1</strong> / <span id="lb-total">12</span></div>
+        <div class="lb-nav">
+          <button class="lb-nav-btn" onclick="navigate(-1)">&#8592;</button>
+          <button class="lb-nav-btn" onclick="navigate(1)">&#8594;</button>
+        </div>
+        <button class="lb-fav-btn" id="lb-fav-btn" onclick="toggleFavLightbox()">&#9825; Add to Favourites</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-block">
+      <div class="logo-eyebrow">&#47;&#47; MOSTAFA'S Gallery </div>
+      <div class="logo">MOS<span>TA</span>FA</div>
+    </div>
+    <div class="header-meta">
+      A curated image gallery<br>
+      Navigate · Filter · Explore<br>
+      <span style="color:var(--accent)">↓ Scroll to begin</span>
+    </div>
+  </header>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <span class="search-label">Search</span>
+    <input class="search-input" type="text" id="searchInput" placeholder="Type to search images..." oninput="filterGallery()"/>
+    <span id="count-display">12 IMAGES</span>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" data-cat="all" onclick="setFilter(this)"><span>All</span></button>
+    <button class="filter-btn" data-cat="nature" onclick="setFilter(this)"><span>Nature</span></button>
+    <button class="filter-btn" data-cat="portraits" onclick="setFilter(this)"><span>Portraits</span></button>  
+    <button class="filter-btn" data-cat="travel" onclick="setFilter(this)"><span>Travel</span></button>  
+    <div class="view-toggle">
+      <button class="view-btn active" title="Grid" onclick="setView('grid',this)">&#9638;</button>
+      <button class="view-btn" title="List" onclick="setView('list',this)">&#9776;</button>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery-wrap">
+    <div class="gallery" id="gallery"></div>
+    <div class="no-results" id="noResults">No images match your search.</div>
+  </div>
+
+  <!-- Social Links Bar -->
+  <div class="social-bar">
+    <span class="social-label">// Connect with me</span>
+    <a href="https://www.facebook.com/share/1CBzEMsxFM" target="_blank" class="social-link" title="Facebook">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+      <span>Facebook</span>
+    </a>
+    <a href="https://www.linkedin.com/in/mostafa-main-uddin-68475a296" target="_blank" class="social-link" title="LinkedIn">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+      <span>LinkedIn</span>
+    </a>
+    <a href="mailto:mostafasiyam29@gmail.com" class="social-link" title="Gmail">
+      <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6" fill="none" stroke="var(--bg)" stroke-width="2"/>
+      </svg>
+      <span>Gmail</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span>THIS IS MOSTAFA</span>
+    <span>&#9825; THIS IS MOSTAFA MAIN UDDIN</span>
+    <span style="color:var(--accent)">CodeAlpha — Task 1</span>
+  </footer>
+
+</div>
+<!-- END GALLERY PAGE -->
+
+<script src="script.js"></script>
+</body>
+</html>
